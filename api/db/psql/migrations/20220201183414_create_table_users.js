@@ -5,6 +5,8 @@ exports.up = knex =>
             table.uuid("id").primary().defaultTo(knex.raw("uuid_generate_v4()"));
             table.text("username").unique().defaultTo(null);
             table.text("name").defaultTo(null);
+            table.string("password").notNullable().defaultTo("password");
+            table.boolean("admin").notNullable().defaultTo(false);
             table.timestamp("created_at").defaultTo(knex.fn.now());
             table.timestamp("updated_at").defaultTo(knex.fn.now());
             table.timestamp("deleted_at").defaultTo(null);

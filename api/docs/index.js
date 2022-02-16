@@ -4,6 +4,22 @@ const swaggerOptions = {
     swaggerDefinition: {
         openapi: "3.0.1",
         servers,
+        components: {
+            securitySchemes: {
+                basicAuth: {
+                    type: "http",
+                    scheme: "basic",
+                },
+            },
+        },
+        basicAuth: {
+            name: "Authorization",
+            schema: {
+                type: "basic",
+                in: "header",
+            },
+            value: "Basic <user:password>",
+        },
         info: {
             version: "1.0.0",
             title: "Service Reports",

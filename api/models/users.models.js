@@ -1,6 +1,7 @@
 const connection = require("../db/psql/connection");
 
 exports.fetchAllUsers = async ({sort_by, order, user_id}) => {
+    console.log("model");
     const users = await connection
         .select("id", "username", "name", "created_at", "updated_at", "deleted_at")
         .from("users")

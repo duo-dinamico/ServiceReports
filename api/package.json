@@ -18,12 +18,17 @@
     "license": "ISC",
     "dependencies": {
         "@hapi/boom": "^9.1.4",
+        "bcryptjs": "^2.4.3",
         "celebrate": "^15.0.1",
+        "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
         "express": "^4.17.1",
+        "express-session": "^1.17.2",
         "helmet": "^5.0.2",
         "knex": "^1.0.1",
         "nodemon": "^2.0.15",
+        "passport": "^0.5.2",
+        "passport-local": "^1.0.0",
         "pg": "^8.7.1",
         "swagger-jsdoc": "^6.1.0",
         "swagger-ui-express": "^4.3.0"
@@ -39,6 +44,7 @@
         "jest": "^27.4.7",
         "jest-sorted": "^1.0.14",
         "lint-staged": "^12.3.3",
+        "passport-stub": "^1.1.1",
         "prettier": "^2.5.1",
         "supertest": "^6.2.1"
     },

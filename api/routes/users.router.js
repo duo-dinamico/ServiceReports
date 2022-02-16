@@ -4,8 +4,9 @@ const {celebrate} = require("celebrate");
 const {usersSchema} = require("../schemas/users");
 const {getAllUsers} = require("../controllers/users.controllers");
 const {methodNotAllowed} = require("../errors");
+const {loginRequired} = require("../auth/_helpers");
 
-usersRouter.route("/").get(celebrate(usersSchema), getAllUsers).all(methodNotAllowed);
+usersRouter.route("/").get(celebrate(usersSchema), loginRequired, getAllUsers).all(methodNotAllowed);
 
 module.exports = usersRouter;
 
@@ -22,6 +23,8 @@ module.exports = usersRouter;
  *  get:
  *    summary: Use to request all users
  *    tags: [Users]
+ *    security:
+ *      - basicAuth: []
  *    parameters:
  *      - $ref: '#parameters/sort_by'
  *      - $ref: '#parameters/order'
@@ -31,4 +34,6 @@ module.exports = usersRouter;
  *        description: A successful response
  *      '400':
  *        description: Bad request.
+ *      '401':
+ *        description: Unauthorized.
  */

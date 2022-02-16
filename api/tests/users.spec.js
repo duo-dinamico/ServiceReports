@@ -1,9 +1,11 @@
 process.env.ENVIRONMENT = "test";
 const supertest = require("supertest");
+const passportStub = require("passport-stub");
 const connection = require("../db/psql/connection");
 const app = require("../app");
 
 const request = supertest(app);
+passportStub.install(app);
 const expectedKeys = ["id", "username", "name", "created_at", "updated_at", "deleted_at"];
 const urlPath = "/api/users";
 const invalidMethods = ["post", "put", "patch", "delete"];
@@ -11,6 +13,12 @@ const invalidMethods = ["post", "put", "patch", "delete"];
 const userId = "9a5c5991-a14d-4d85-b75f-d75081500c8d";
 
 describe("/api", () => {
+    beforeAll(() =>
+        passportStub.login({
+            username: "testuserlogin",
+            password: "testuserpassword",
+        })
+    );
     beforeEach(() => connection.seed.run());
     afterAll(() => connection.destroy());
     describe("/users", () => {
